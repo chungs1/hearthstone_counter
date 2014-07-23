@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  get 'admin/login' => 'admin#login', as: :login
+  post 'admin/login' => 'admin#login_post', as: :login_post
+
+
   resources :decks
+  root to: 'decks#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

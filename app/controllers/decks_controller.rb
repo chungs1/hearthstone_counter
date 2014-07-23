@@ -24,7 +24,6 @@ class DecksController < ApplicationController
   # POST /decks
   # POST /decks.json
   def create
-    byebug
     @deck = Deck.new(deck_params)
 
     respond_to do |format|
