@@ -45,12 +45,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">HearthstoneCounter</a>
+          <a class="brand" href="/">HearthstoneCounter</a>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li><%= link_to "Decks", "/decks"  %></li>
+              <li><%= link_to "Admin Login", "/admin/login"  %></li>
+              <% if session['authenticated'] %>
+                <li><%= link_to "New Deck", "/decks/new"  %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
