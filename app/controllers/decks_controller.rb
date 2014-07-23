@@ -24,6 +24,7 @@ class DecksController < ApplicationController
   # POST /decks
   # POST /decks.json
   def create
+    byebug
     @deck = Deck.new(deck_params)
 
     respond_to do |format|
@@ -69,6 +70,6 @@ class DecksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deck_params
-      params.require(:deck).permit(:name, :link, :description)
+      params.require(:deck).permit(:name, :link, :description, :countee_ids => [], :counter_ids => [])
     end
 end
