@@ -1,19 +1,20 @@
 <%- model_class = Deck -%>
+<div id="content">
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 <div class="container">
   <div class="row">
-    <div class="span6">
+    <div class="span5 offset1">
       <dl class="dl-horizontal">
         <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
         <dd><%= @deck.name %></dd>
-        <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+        <dt><strong>Description and Tips:</strong></dt>
         <dd><%= @deck.description %></dd>
       </dl>
       <div class="container">
         <div class="row">
-          <div class="span6 offset6">
+          <div class="span6" style="margin-left:8%">
             <% unless @deck.link.empty? %>
               <img src="<%= @deck.link %>"></img>
             <% end %>
@@ -21,42 +22,80 @@
         </div>
       </div>
     </div>
-
-    <div class="span3">
-      <table class="table">
-        <tr>
-          <th>Counters</th>
-        </tr>
-        <% @deck.counters.each do |counter| %>
+    <div class="decks-counter">
+      <div class="span3">
+        <table class="table table-hover">
           <tr>
-            <td><a href="#"><%= counter.name %></a></td>
+            <th>Counters</th>
+          </tr>
+          <% @deck.counters.each do |counter| %>
+            <tr>
+              <td><%= link_to counter.name, "javascript:;", :class => "counter", :data => counter.id %></td>
+            <tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="span3">
+        <table class="table table-hover">
           <tr>
-        <% end %>
-      </table>
+            <th>Countered by</th>
+          </tr>
+          <% @deck.countees.each do |countee| %>
+            <tr>
+              <td><%= link_to countee.name, "javascript:;", :class => "counter", :data => countee.id %></td>
+            <tr>
+          <% end %>
+        </table>
+      </div>
     </div>
-    <div class="span3">
-      <table class="table">
-        <tr>
-          <th>Countered by</th>
-        </tr>
-        <% @deck.countees.each do |countee| %>
-          <tr>
-            <td><a href="#"><%= countee.name %></a></td>
-          <tr>
+    <% @deck.counters.each do |counter| %>
+      <div id="<%= counter.id %>" style="display:none;">
+        <div>
+          <h3>Counters: <%= link_to counter.name, deck_path(counter) %></h3>
+        </div>
+        <div class="span3">
+          <img src="<%= counter.link %>"></img>
+        </div>
+        <div class="span3">
+          <p><%= counter.description %></p><br>
+          <button class="btn goback" data="<%= counter.id %>">Go Back</button>
+        </div>
+      </div>
+    <% end %>
+    <% @deck.countees.each do |countee| %>
+      <div id="<%= countee.id %>" style="display:none;">
+        <div>
+          <h3>Countered By: <%= link_to countee.name, deck_path(countee) %></h3>
+        </div>
+        <% unless countee.link.empty? %>
+        <div class="span3">
+          <img src="<%= countee.link %>"></img>
+        </div>
         <% end %>
-      </table>
-    </div>
+        <div class="<% if countee.link.empty? %> span6 <% else %> span3 <% end %>">
+          <p><%= countee.description %></p><br>
+          <button class="btn goback" data="<%= countee.id %>">Go Back</button>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               decks_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_deck_path(@deck), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              deck_path(@deck),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+  <% if session["authenticated"] %>
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_deck_path(@deck), :class => 'btn' %>
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                deck_path(@deck),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger' %>
+  <% end %>
+</div> 
 </div>
+
+<script type="text/javascript">
+  <%= render :partial => "decks/show.js" %>
+</script>

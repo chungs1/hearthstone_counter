@@ -1,0 +1,17 @@
+(function() {
+    $(".counter").on("click", function() {
+      var data_id = $(this).attr("data");
+      $(".decks-counter").fadeOut("normal", function() {
+        $("#"+data_id).fadeIn();
+      });
+      
+
+    });
+
+    $(".goback").on("click", function() {
+      var data_id = $(this).attr("data");
+      $("#"+data_id).fadeOut("normal", function() {
+        $(".decks-counter").fadeIn();
+      });
+    });
+})();
