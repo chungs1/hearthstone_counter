@@ -2,15 +2,52 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      <dl class="dl-horizontal">
+        <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+        <dd><%= @deck.name %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+        <dd><%= @deck.description %></dd>
+      </dl>
+      <div class="container">
+        <div class="row">
+          <div class="span6 offset6">
+            <% unless @deck.link.empty? %>
+              <img src="<%= @deck.link %>"></img>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @deck.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:link) %>:</strong></dt>
-  <dd><%= @deck.link %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @deck.description %></dd>
-</dl>
+    <div class="span3">
+      <table class="table">
+        <tr>
+          <th>Counters</th>
+        </tr>
+        <% @deck.counters.each do |counter| %>
+          <tr>
+            <td><a href="#"><%= counter.name %></a></td>
+          <tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table">
+        <tr>
+          <th>Countered by</th>
+        </tr>
+        <% @deck.countees.each do |countee| %>
+          <tr>
+            <td><a href="#"><%= countee.name %></a></td>
+          <tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

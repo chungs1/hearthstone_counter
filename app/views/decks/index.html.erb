@@ -5,22 +5,16 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:link) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @decks.each do |deck| %>
       <tr>
-        <td><%= link_to deck.id, deck_path(deck) %></td>
-        <td><%= deck.name %></td>
-        <td><%= deck.link %></td>
+        <td><%= link_to deck.name, deck_path(deck) %></td>
         <td><%= deck.description %></td>
-        <td><%=l deck.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_deck_path(deck), :class => 'btn btn-mini' %>
