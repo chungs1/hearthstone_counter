@@ -15,7 +15,7 @@
  */
 
 body {
-  padding-top: 50px;
+  padding-top: 5%;
   background-color: #242424;
   color: #eeeeee;
 }
@@ -28,3 +28,18 @@ a {
   color: #cee3f8;
 }
 
+a:hover {
+  color: #eeeeee;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #47525d;
+}
+
+#moveimg {
+  margin-left: 1%;
+}
+
+div {
+  overflow: scroll;
+}
