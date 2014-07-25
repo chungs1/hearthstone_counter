@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'admin/login' => 'admin#login', as: :login
+  get 'admin/logout' => 'admin#logout', as: :logout
   post 'admin/login' => 'admin#login_post', as: :login_post
 
 
