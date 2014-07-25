@@ -19,7 +19,7 @@
           <% @decks.each do |deck| %>
             <tr>
               <td><%= link_to deck.name, deck_path(deck) %></td>
-              <td><%= deck.description %></td>
+              <td><%= deck.description[0..100] %></td>
               <% if session["authenticated"] %>
                 <td>
                   <%= link_to t('.edit', :default => t("helpers.links.edit")),
