@@ -49,9 +49,11 @@
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "Decks", "/decks"  %></li>
-              <li><%= link_to "Admin Login", "/admin/login"  %></li>
               <% if session['authenticated'] %>
-                <li><%= link_to "New Deck", "/decks/new"  %></li>
+                <li><%= link_to "Logout", logout_path  %></li>
+              <% end %>
+              <% if session['authenticated'] %>
+                <li><%= link_to "New Deck", new_deck_path  %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
