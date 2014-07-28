@@ -25,9 +25,9 @@
       <div class="span3">
         <table class="table table-hover">
           <tr>
-            <th>Counters</th>
+            <th>Strong Against</th>
           </tr>
-          <% @deck.counters.each do |counter| %>
+          <% @deck.strong_against.each do |counter| %>
             <tr>
               <td><%= link_to counter.name, "javascript:;", :class => "counter", :data => counter.id %></td>
             <tr>
@@ -37,9 +37,9 @@
       <div class="span3">
         <table class="table table-hover">
           <tr>
-            <th>Countered by</th>
+            <th>Weak Against</th>
           </tr>
-          <% @deck.countees.each do |countee| %>
+          <% @deck.weak_against.each do |countee| %>
             <tr>
               <td><%= link_to countee.name, "javascript:;", :class => "counter", :data => countee.id %></td>
             <tr>
@@ -47,31 +47,68 @@
         </table>
       </div>
     </div>
-    <% @deck.counters.each do |counter| %>
+    <% @deck.strong_against.each do |counter| %>
       <div id="<%= counter.id %>" style="display:none;">
         <div class="span3">
           <div>
-            <h3>Counters: <%= link_to counter.name, deck_path(counter) %></h3>
+            <h3>Strong Against: <%= link_to counter.name, deck_path(counter) %></h3> 
           </div>
           <img src="<%= counter.link %>"></img>
         </div>
         <div class="span3">
-          <p><%= raw counter.description.gsub! /\n/, '<br />' %></p><br>
+          <div class="voting">
+            <span style="float:left;">
+              <a href="javascript:;">
+                <div class="upvote" style="background-color:#468847;">
+                  <img src="/assets/upvote.png">
+                  <%= Matchup.where("strong_id" => @deck.id).where("weak_id" => counter.id).first.thumbs_up %>
+                </div>
+              </a>
+            </span>
+            <span style="float:left;">
+              <a href="javascript:;">
+                <div class="downvote" style="background-color:#B94A48">
+                  <img src="/assets/downvote.png">
+                  <%= Matchup.where("strong_id" => @deck.id).where("weak_id" => counter.id).first.thumbs_down %>
+                </div>
+              </a>
+            </span>
+          </div><br><br>
+          <p><%= raw counter.description.gsub! /\n/, '<br />' %></p>
+          <br>
           <button class="btn goback" data="<%= counter.id %>">Go Back</button>
         </div>
       </div>
     <% end %>
-    <% @deck.countees.each do |countee| %>
+    <% @deck.weak_against.each do |countee| %>
       <div id="<%= countee.id %>" style="display:none;">
         <% unless countee.link.empty? %>
         <div class="span3">
           <div>
-            <h3>Countered By: <%= link_to countee.name, deck_path(countee) %></h3>
+            <h3>Weak To: <%= link_to countee.name, deck_path(countee) %></h3>
           </div>
           <img src="<%= countee.link %>"></img>
         </div>
         <% end %>
         <div class="<% if countee.link.empty? %> span6 <% else %> span3 <% end %>">
+          <div class="voting">
+            <span style="float:left;">
+              <a href="javascript:;">
+                <div class="upvote" style="background-color:#468847;">
+                  <img src="/assets/upvote.png">
+                  <%= Matchup.where("strong_id" => countee.id).where("weak_id" => @deck.id).first.thumbs_up %>
+                </div>
+              </a>
+            </span>
+            <span style="float:left;">
+              <a href="javascript:;">
+                <div class="downvote" style="background-color:#B94A48">
+                  <img src="/assets/downvote.png">
+                  <%= Matchup.where("strong_id" => countee.id).where("weak_id" => @deck.id).first.thumbs_down %>
+                </div>
+              </a>
+            </span>
+          </div><br><br>
           <p><%= raw countee.description.gsub! /\n/, '<br />' %></p><br>
           <button class="btn goback" data="<%= countee.id %>">Go Back</button>
         </div>

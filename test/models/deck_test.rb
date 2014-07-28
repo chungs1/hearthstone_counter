@@ -8,6 +8,7 @@
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  hero        :string(255)
 #
 
 require 'test_helper'

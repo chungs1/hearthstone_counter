@@ -11,12 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723012615) do
-
-  create_table "deck_counters", id: false, force: true do |t|
-    t.integer "deck_id",         null: false
-    t.integer "deck_counter_id", null: false
-  end
+ActiveRecord::Schema.define(version: 20140725210442) do
 
   create_table "decks", force: true do |t|
     t.string   "name"
@@ -24,6 +19,14 @@ ActiveRecord::Schema.define(version: 20140723012615) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "hero"
+  end
+
+  create_table "matchups", id: false, force: true do |t|
+    t.integer "strong_id",               null: false
+    t.integer "weak_id",                 null: false
+    t.integer "thumbs_up",   default: 0
+    t.integer "thumbs_down", default: 0
   end
 
 end

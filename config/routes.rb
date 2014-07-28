@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   get 'admin/logout' => 'admin#logout', as: :logout
   post 'admin/login' => 'admin#login_post', as: :login_post
 
+  get 'heroes' => 'decks#heroes', as: :heroes
+  get 'hero/:hero' => 'decks#hero', as: :hero
+
 
   resources :decks
-  root to: 'decks#index'
+  root to: 'decks#heroes'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

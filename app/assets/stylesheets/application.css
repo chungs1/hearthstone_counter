@@ -15,7 +15,7 @@
  */
 
 body {
-  padding-top: 5%;
+  padding-top: 3%;
   background-color: #242424;
   color: #eeeeee;
 }
@@ -40,6 +40,37 @@ a:hover {
   margin-left: 1%;
 }
 
-div {
-  overflow: scroll;
+.heroes {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 4%;
 }
+
+.fadeout {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 2%;
+}
+
+.upvote {
+  border-radius: 2px;
+  padding: 2px 10px;
+  margin: 0 2px 0 0;
+}
+
+.downvote {
+  border-radius: 2px;
+  padding: 2px 10px;
+  margin: 0 2px 0 0;
+}
+
+.voting {
+  margin-bottom: 3%;
+}
+
+/*.hero:hover {
+  box-shadow: 0 0 50px rgba(81, 203, 238, 1);
+  border: 0px solid rgba(81, 203, 238, 1);
+  filter: box-shadow(1px 1px 4px rgba(0,0,0,0.75));
+}*/
+

@@ -1,0 +1,15 @@
+<div class="container heroes">
+  <h1> Choose Your Hero </h1>
+  <% heroes_nest.each do |heroes_array| %>
+    <div class="row">
+      <div class="span10 offset1">
+        <% heroes_array.each do |hero| %>
+          <div class="span3 hero"><center>
+            <%= link_to image_tag("#{hero}.png", :border=>0), hero_path(:hero => hero), :action => 'show', 
+              :controller => 'pages', :class => 'dock-item' %></center>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

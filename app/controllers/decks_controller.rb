@@ -7,6 +7,16 @@ class DecksController < ApplicationController
     @decks = Deck.all
   end
 
+  def heroes
+  end
+
+  def hero
+    @hero = params[:hero]
+    @decks = Deck.where(hero: @hero)
+    render 'index'
+  end
+
+
   # GET /decks/1
   # GET /decks/1.json
   def show
@@ -69,6 +79,6 @@ class DecksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deck_params
-      params.require(:deck).permit(:name, :link, :description, :countee_ids => [], :counter_ids => [])
+      params.require(:deck).permit(:name, :link, :description, :hero, :weak_against_ids => [], :strong_against_ids => [])
     end
 end
