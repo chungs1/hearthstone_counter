@@ -22,7 +22,21 @@
           url: "<%= thumbsup_path %>",
           data: { strong_id: strong, weak_id: weak, num_votes: numvotes}
         }).done(function(number) {
-          $(".upvote[strong~="+strong+"][weak~="+weak+"]").find("span").html(<%= 0%>);
+          $(".upvote[strong="+number["strong_id"]+"][weak="+number["weak_id"]+"]").find("span").html(number["thumbs_up"]);
+        });
+      }
+
+      send_and_get_upvotes($(this).attr("strong"), $(this).attr("weak"), Number($(this).text()));
+    });
+
+    $(".downvote").on("click", function() {
+      function send_and_get_upvotes(strong, weak, numvotes) {
+        $.ajax({
+          type: 'POST',
+          url: "<%= thumbsdown_path %>",
+          data: { strong_id: strong, weak_id: weak, num_votes: numvotes}
+        }).done(function(number) {
+          $(".downvote[strong="+number["strong_id"]+"][weak="+number["weak_id"]+"]").find("span").html(number["thumbs_down"]);
         });
       }
 

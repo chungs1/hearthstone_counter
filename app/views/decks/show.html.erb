@@ -96,7 +96,7 @@
               <a href="javascript:;">
                 <div class="upvote" style="background-color:#468847;" strong="<%= countee.id %>" weak="<%= @deck.id %>">
                   <img src="/assets/upvote.png">
-                  <%= Matchup.where("strong_id" => countee.id).where("weak_id" => @deck.id).first.thumbs_up %>
+                  <span><%= Matchup.where("strong_id" => countee.id).where("weak_id" => @deck.id).first.thumbs_up %></span>
                 </div>
               </a>
             </span>
@@ -104,7 +104,7 @@
               <a href="javascript:;">
                 <div class="downvote" style="background-color:#B94A48" strong="<%= countee.id %>" weak="<%= @deck.id %>">
                   <img src="/assets/downvote.png">
-                  <%= Matchup.where("strong_id" => countee.id).where("weak_id" => @deck.id).first.thumbs_down %>
+                  <span><%= Matchup.where("strong_id" => countee.id).where("weak_id" => @deck.id).first.thumbs_down %></span>
                 </div>
               </a>
             </span>

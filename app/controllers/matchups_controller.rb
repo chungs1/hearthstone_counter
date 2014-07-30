@@ -4,7 +4,7 @@ class MatchupsController < ApplicationController
 
     @matchup.thumbs_up = @matchup.thumbs_up+1
     @matchup.save
-    render {:nothing => true, :upcount => @matchup.thumbs_up, :strong => @matchup.strong_id, :weak => @matchup.weak_id }
+    render :json => @matchup
   end
 
   def thumbsdown
@@ -12,7 +12,7 @@ class MatchupsController < ApplicationController
 
     @matchup.thumbs_down = @matchup.thumbs_down+1
     @matchup.save
-    render :nothing => true
+    render :json => @matchup
   end
 
 end
