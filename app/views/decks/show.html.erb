@@ -48,6 +48,7 @@
       </div>
     </div>
     <% @deck.strong_against.each do |counter| %>
+      <% matchup = Matchup.where("strong_id" => @deck.id).where("weak_id" => counter.id).first %>
       <div id="<%= counter.id %>" style="display:none;">
         <div class="span3">
           <div>
@@ -61,7 +62,7 @@
               <a href="javascript:;">
                 <div class="upvote" style="background-color:#468847;" strong="<%= @deck.id %>" weak="<%= counter.id %>">
                   <img src="/assets/upvote.png">
-                  <span><%= Matchup.where("strong_id" => @deck.id).where("weak_id" => counter.id).first.thumbs_up %></span>
+                  <span><%= matchup.thumbs_up %></span>
                 </div>
               </a>
             </span>
@@ -69,7 +70,7 @@
               <a href="javascript:;">
                 <div class="downvote" style="background-color:#B94A48" strong="<%= @deck.id %>" weak="<%= counter.id %>">
                   <img src="/assets/downvote.png">
-                  <span><%= Matchup.where("strong_id" => @deck.id).where("weak_id" => counter.id).first.thumbs_down %></span>
+                  <span><%= matchup.thumbs_down %></span>
                 </div>
               </a>
             </span>
@@ -81,6 +82,7 @@
       </div>
     <% end %>
     <% @deck.weak_against.each do |countee| %>
+      <% matchup = Matchup.where("strong_id" => countee.id).where("weak_id" => @deck.id).first %>
       <div id="<%= countee.id %>" style="display:none;">
         <% unless countee.link.empty? %>
         <div class="span3">
@@ -96,7 +98,7 @@
               <a href="javascript:;">
                 <div class="upvote" style="background-color:#468847;" strong="<%= countee.id %>" weak="<%= @deck.id %>">
                   <img src="/assets/upvote.png">
-                  <span><%= Matchup.where("strong_id" => countee.id).where("weak_id" => @deck.id).first.thumbs_up %></span>
+                  <span><%= matchup.thumbs_up %></span>
                 </div>
               </a>
             </span>
@@ -104,7 +106,7 @@
               <a href="javascript:;">
                 <div class="downvote" style="background-color:#B94A48" strong="<%= countee.id %>" weak="<%= @deck.id %>">
                   <img src="/assets/downvote.png">
-                  <span><%= Matchup.where("strong_id" => countee.id).where("weak_id" => @deck.id).first.thumbs_down %></span>
+                  <span><%= matchup.thumbs_down %></span>
                 </div>
               </a>
             </span>
