@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'heroes' => 'decks#heroes', as: :heroes
   get 'hero/:hero' => 'decks#hero', as: :hero
 
+  post '/matchups/thumbsup' => 'matchups#thumbsup', as: :thumbsup
+  post '/matchups/thumbsdown' => 'matchups#thumbsdown', as: :thumbsdown
 
   resources :decks
   root to: 'decks#heroes'

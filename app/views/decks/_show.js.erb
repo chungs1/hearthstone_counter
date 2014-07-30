@@ -15,5 +15,17 @@
       });
     });
 
-    
+    $(".upvote").on("click", function() {
+      function send_and_get_upvotes(strong, weak, numvotes) {
+        $.ajax({
+          type: 'POST',
+          url: "<%= thumbsup_path %>",
+          data: { strong_id: strong, weak_id: weak, num_votes: numvotes}
+        }).done(function(number) {
+          $(".upvote[strong~="+strong+"][weak~="+weak+"]").find("span").html(<%= 0%>);
+        });
+      }
+
+      send_and_get_upvotes($(this).attr("strong"), $(this).attr("weak"), Number($(this).text()));
+    });
 })();
