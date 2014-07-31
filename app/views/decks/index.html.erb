@@ -1,14 +1,12 @@
 <%- model_class = Deck -%>
-<div class="fadeout" <% if @hero %> style="background: url('/assets/<%= @hero %>banner.jpg') no-repeat; " <% end %>>
-  <h1 <% if @hero == 'druid' %> style="color:#062f3c" <% end %>>
+<div class="fadeout" <% if @hero %> style="background: url('/assets/<%= @hero %>banners.png') no-repeat; background-position: right <% if @hero == 'paladin' || @hero == 'hunter' %>top<% end %>;" <% end %>>
+  <h1>
     <% if @hero %>
       <%= @hero.capitalize + ' Decks'%>
     <% else %>
       <%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
     <% end %>
   </h1>
-</div>
-<div class="fadeoutPicRight">
 </div>
 
 <div class="container">

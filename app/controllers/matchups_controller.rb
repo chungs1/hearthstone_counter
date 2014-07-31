@@ -10,7 +10,7 @@ class MatchupsController < ApplicationController
   def thumbsdown
     @matchup = Matchup.where("strong_id" => params["strong_id"], "weak_id" => params["weak_id"]).first
 
-    @matchup.thumbs_down = @matchup.thumbs_down+1
+    @matchup.thumbs_down += 1
     @matchup.save
     render :json => @matchup
   end
