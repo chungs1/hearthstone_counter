@@ -1,5 +1,5 @@
 <%- model_class = Deck -%>
-<div class="fadeout" <% if @hero %> style="background: url('/assets/<%= @hero %>banner.jpg') no-repeat; " <% end %>>
+<div class="fadeout" <% if @hero %> style='background: url("<%= image_path("#{@hero}banner.jpg") %>") no-repeat; ' <% end %>>
   <h1 <% if @hero == 'druid' %> style="color:#062f3c" <% end %>>
     <% if @hero %>
       <%= @hero.capitalize + ' Decks'%>
