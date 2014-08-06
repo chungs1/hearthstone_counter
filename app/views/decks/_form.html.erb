@@ -1,7 +1,7 @@
 <%= form_for @deck, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="container">
     <div class="row">
-      <div class="span6 input-form">
+      <div class="col-md-6 input-form">
         <div class="control-group">
           <%= f.label :name, :class => 'control-label' %>
           <div class="controls">
@@ -11,7 +11,7 @@
         <div class="control-group">
           <%= f.label :hero, :class => 'control-label' %>
           <div class="controls">
-            <%= f.select :hero, heroes_capped, :style => "width:90%" %>
+            <%= f.select :hero, heroes_capped, :style => "width:90%", :class => "dropdown"%>
           </div>
         </div>
         <div class="control-group">
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <div class="span6">
+      <div class="col-md-6">
         <table class="table counters">
           <tr>
             <th>Name</th>

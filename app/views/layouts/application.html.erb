@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "HearthstoneCounter" %></title>
-    <%= stylesheet_link_tag    :application, media: :all %>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <%= javascript_include_tag :modernizr %>
     <%= csrf_meta_tags %>
 
@@ -14,7 +14,6 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
     <![endif]-->
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
@@ -35,21 +34,18 @@
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
-
+    <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
   </head>
   <body>
-    <div class="navbar navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">HearthstoneCounter</a>
-          <div class="container nav-collapse">
-            <ul class="nav">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">HearthstoneCounter</a>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
               <li><%= link_to "Decks", "/decks"  %></li>
               <% if session['authenticated'] %>
                 <li><%= link_to "Logout", logout_path  %></li>
@@ -61,11 +57,11 @@
           </div><!--/.nav-collapse -->
         </div>
       </div>
-    </div>
+    </nav>
 
-    <div class="container" id="primary-content">
+    <div class="container-fluid" id="primary-content">
         <div class="row">
-          <div class="span12">
+          <div class="col-md-12">
             <% flash.each do |name, msg| %>
               <% if msg.is_a?(String) %>
                 <div class="alert alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %>">

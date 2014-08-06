@@ -1,14 +1,18 @@
-<h1>Login as admin</h1>
-<%= form_tag login_post_path do %>
-  <div class="form-actions">
-    <div class="control-group" style="color:#242424">
-      <%= label_tag :secret_password %>
-      <div class="controls">
-        <%= password_field_tag :password %>
+<div class="container">
+  <div class="row">
+    <h1>Login as admin</h1>
+    <%= form_tag login_post_path do %>
+      <div class="form-actions">
+        <div class="control-group" style="color:#242424">
+          <%= label_tag :secret_password %>
+          <div class="controls">
+            <%= password_field_tag :password %>
+          </div>
+        </div>
+        <%= submit_tag 'Submit', :class => 'btn btn-primary' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    root_path, :class => 'btn btn-danger' %>
       </div>
-    </div>
-    <%= submit_tag 'Submit', :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                root_path, :class => 'btn' %>
+    <% end %>
   </div>
-<% end %>
+</div>

@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'annotate'
-gem "twitter-bootstrap-rails"
 
 group :production do
   gem 'rails_12factor'

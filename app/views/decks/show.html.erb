@@ -1,19 +1,23 @@
 <%- model_class = Deck -%>
-<div id="content">
-<div class="page-header">
-  <h1><%=t '.title', :default => @deck.name.titleize + " " + model_class.model_name.human.titleize %></h1>
+<div class="container">
+  <div class="row">
+    <div id="content">
+    <div class="page-header">
+      <h1><%=t '.title', :default => @deck.name.titleize + " " + model_class.model_name.human.titleize %></h1>
+    </div>
+  </div>
 </div>
 <div class="container">
   <div class="row">
-    <div class="span6">
+    <div class="col-md-6">
       <div class="row">
-        <div class="span3">
+        <div class="col-md-6">
           <div class="dl-horizontal">
             <h4><strong>Tips:</strong></h4>
             <div><%= raw @deck.description.gsub! /\n/, '<br />' %></div>
           </div>
         </div>
-        <div class="span3" id="moveimg">
+        <div class="col-md-6" id="moveimg">
           <h4><br><%= @deck.name %></h4>
           <% unless @deck.link.empty? %>
             <img src="<%= @deck.link %>"></img>
@@ -22,7 +26,7 @@
       </div>
     </div>
     <div class="decks-counter">
-      <div class="span3">
+      <div class="col-md-3">
         <table class="table table-hover">
           <tr>
             <th>Strong Against</th>
@@ -34,7 +38,7 @@
           <% end %>
         </table>
       </div>
-      <div class="span3">
+      <div class="col-md-3">
         <table class="table table-hover">
           <tr>
             <th>Weak Against</th>
@@ -50,13 +54,13 @@
     <% @deck.strong_against.each do |counter| %>
       <% matchup = Matchup.where("strong_id" => @deck.id).where("weak_id" => counter.id).first %>
       <div id="<%= counter.id %>" style="display:none;">
-        <div class="span3">
+        <div class="col-md-3">
           <div>
             <h4>Strong Against: <br><%= link_to counter.name, deck_path(counter) %></h4> 
           </div>
-          <img src="<%= counter.link %>"></img>
+          <img src="<%= counter.link %>" class="img-responsive"></img>
         </div>
-        <div class="span3">
+        <div class="col-md-3">
           <div class="voting">
             <span style="float:left;">
               <a href="javascript:;">
@@ -85,14 +89,14 @@
       <% matchup = Matchup.where("strong_id" => countee.id).where("weak_id" => @deck.id).first %>
       <div id="<%= countee.id %>" style="display:none;">
         <% unless countee.link.empty? %>
-        <div class="span3">
+        <div class="col-md-3">
           <div>
             <h4>Weak To: <br><%= link_to countee.name, deck_path(countee) %></h4>
           </div>
-          <img src="<%= countee.link %>"></img>
+          <img src="<%= countee.link %>" class="img-responsive"></img>
         </div>
         <% end %>
-        <div class="<% if countee.link.empty? %> span6 <% else %> span3 <% end %>">
+        <div class="<% if countee.link.empty? %> col-md-6 <% else %> col-md-3 <% end %>">
           <div class="voting" >
             <span style="float:left;">
               <a href="javascript:;">
