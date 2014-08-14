@@ -16,3 +16,4 @@
 /tmp
 
 /config/initializers/environment_variables.rb
+/config/database.yml

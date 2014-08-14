@@ -4,7 +4,7 @@ gem 'annotate'
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
+  gem 'mysql2'
 end
 
 group :test, :development do
